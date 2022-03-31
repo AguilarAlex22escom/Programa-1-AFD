@@ -5,64 +5,99 @@
 
 /* run this program using the console pauser or add your own getch, system("pause") or input loop */
  
-/* Función para la lectura del archivo que contendrá el AFD. */
+/* Funciï¿½n para la lectura del archivo que contendrï¿½ el AFD. */
 void openFile() {
+
+	FILE *fichero ; // Se declara un nuevo archivo.
+	char *archivo = "automata_finito_determinista.txt" ; // Apuntador de caracteres que almacena la informaciï¿½n del archivo.
+	char texto ; // Variable de caracteres.
 	
-	FILE *fichero ;
-	char *nombreDeArchivo = "automata_finito_determinista.txt" ;
-	fichero = fopen( nombreDeArchivo, "r" ) ;
+	fichero = fopen( archivo, "r" ) ; // Se le solicita al sistema que lea el archivo declarado en un apuntador.
 	
-	if( fichero == NULL ) {
-		printf( "Error en la lectura del archivo, mejor banate..." ) ;
-		fclose( fichero ) ;
+	if( fichero == NULL ) { // Si la informaciï¿½n del archivo es nula, se envï¿½a un mensaje de error.
+		perror( "No existe informacion dentro del archivo... \n" ) ;
 	}
 	
-	char linea[20] ;
-	fgets( linea, 20 - 1, fichero ) ;
-	char *token = strtok( linea, " " ) ;
-	int filas = atoi( token ) ;
-	token = strtok( NULL, " " ) ;
+	else {
+		
+		while( feof( fichero ) == 0 ) { // Mientras no sea el final del archivo, se envï¿½a la informaciï¿½n a una vaiable para su lectura en CMD.
+			
+			texto = fgetc( fichero ) ;
+			printf( "%c", texto ) ;
+			
+		}
+		
+	}
 	
-//	FILE *fichero ; // Se declara un nuevo archivo.
-//	char *archivo = "automata_finito_determinista.txt" ; // Apuntador de caracteres que almacena la información del archivo.
-//	char texto ; // Variable de caracteres.
-//	
-//	fichero = fopen( archivo, "r" ) ; // Se le solicita al sistema que lea el archivo declarado en un apuntador.
-//	
-//	if( fichero == NULL ) { // Si la información del archivo es nula, se envía un mensaje de error.
-//		perror( "No existe información dentro del archivo..." ) ;
-//	}
-//	
-//	else {
-//		
-//		while( feof( fichero ) == 0 ) { // Mientras no sea el final del archivo, se envía la información a una vaiable para su lectura en CMD.
-//			
-//			texto = fgetc( fichero ) ;
-//			printf( "%c", texto ) ;
-//			
-//		}
-//		
-//	}
-//	
-//	fclose( fichero ) ; // Cierre del archivo por parte del sistema.
-//	getch() ;
+	fclose( fichero ) ; // Cierre del archivo por parte del sistema.
+	getch() ;
 
 }
 
-/* void readChains() {
+void enterChains( int *cadena ) {
 	
-	int position, 
+	int n ;
+	printf( "Ingrese el tamanio de la cadena: " ) ;
+	scanf( "%d", &n ) ;
 	
-	if(  ) {
+	cadena = malloc( n * sizeof(int) ) ;
+	
+	printf( "Ingrese una cadena de %d caracteres con valores de 0 o 1: \n", n ) ;
+	
+	int i ;
+	if( cadena != NULL ) {
 		
-		
+		for( i = 0 ; i < n ; i++ ) {
+			scanf( "%d" , &cadena ) ;
+		}
 		
 	}
 	
-} */
+	else {
+	
+		perror( "Error en la creacion de la cadena... \n" ) ;
+		systen( "PAUSE" ) ;
+		printf( "Vuelva a ingresar una cadena: \n" ) ;
+		enterChains( cadena ) ;
+	
+	}
+	
+	
+}
+
+void readChains() {
+	
+	char *estado ;
+	int estadoDeAceptacion ;
+	bool aceptacionDeEstado ;
+	int *cadena, *alfabeto ;
+	
+} 
 
 void main(int argc, char *argv[]) {
 	
-	openFile() ; // Se manda a llamar a la función que permite la lectura del archivo.
+	char *estado ;
+	int estadoDeAceptacion ;
+	bool aceptacionDeEstado ;
+	int *cadena, *alfabeto ;
+	
+	openFile() ; // Se manda a llamar a la funciï¿½n que permite la lectura del archivo.
+	enterChains( cadena ) ;
+
+	int tamanioDeCadena = sizeof( cadena ) / sizeof( cadena[0] ) ;
+		
+	if( tamanioDeCadena >= 3 ) {
+		
+		
+		
+	}	
+		
+	else {
+		
+		perror( "Error en el tamanio de la cadena ingresada... \n" ) ;
+		printf( "\n\nIngrese nuevamente una cadena: " ) ;
+		enterChains( cadena ) ;
+
+	}
 
 }
